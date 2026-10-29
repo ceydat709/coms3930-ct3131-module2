@@ -59,11 +59,10 @@ void draw()
   // read every line from ESP32
   while (myPort.available() > 0) {
     val = myPort.readStringUntil('\n');
-    if (val != null) {
-      val = val.trim();
-      int[] data = int(split(val, ','));
-      if (data.length == 5) readSensors(data[0], data[1], data[3], data[4]);
-    }
+    if (val == null) break;  // wait for the rest next frame
+    val = val.trim();
+    int[] data = int(split(val, ','));
+    if (data.length == 5) readSensors(data[0], data[1], data[3], data[4]);
   }
 
   updateClay();
