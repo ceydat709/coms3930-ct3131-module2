@@ -21,6 +21,7 @@ float push = 0;
 
 int step = 0;
 int lastButton = 1;
+int lastSw = 1;  // joystick press from last time, 0 = pressed
 color glaze;
 String[] stepNames = { "Place clay", "Shape it", "Open the top", "Fired!" };
 
@@ -62,7 +63,7 @@ void draw()
     if (val == null) break;  // wait for the rest next frame
     val = val.trim();
     int[] data = int(split(val, ','));
-    if (data.length == 5) readSensors(data[0], data[1], data[3], data[4]);
+    if (data.length == 5) readSensors(data[0], data[1], data[2], data[3], data[4]);
   }
 
   updateClay();
@@ -76,7 +77,7 @@ void draw()
   drawText();
 }
 
-void readSensors(int x, int y, int pot, int button) {
+void readSensors(int x, int y, int sw, int pot, int button) {
   push = map(x, 0, analogMax, -1, 1);
   float upDown = map(y, 0, analogMax, -1, 1);
   if (abs(push) < 0.15) push = 0;
@@ -90,6 +91,10 @@ void readSensors(int x, int y, int pot, int button) {
 
   if (button == 0 && lastButton == 1) nextStep();
   lastButton = button;
+
+  // pressing down on the joystick after firing tries a new glaze
+  if (sw == 0 && lastSw == 1 && step == 3) pickGlaze();
+  lastSw = sw;
 }
 
 void nextStep() {
@@ -103,9 +108,14 @@ void nextStep() {
     }
   }
 
-  if (step == 3) {
-    // pick a random  color
-    color[] glazes = { color(120, 175, 160), color(90, 130, 190), color(240, 232, 215), color(150, 110, 170) };
+  if (step == 3) pickGlaze();
+}
+
+void pickGlaze() {
+  // pick a random  color, different from the one before
+  color[] glazes = { color(120, 175, 160), color(90, 130, 190), color(240, 232, 215), color(150, 110, 170) };
+  color oldGlaze = glaze;
+  while (glaze == oldGlaze) {
     glaze = glazes[int(random(glazes.length))];
   }
 }
@@ -294,4 +304,5 @@ void drawText() {
 
   if (step == 1) label("Press: open the top", 56, 161, accent);
   if (step == 2) label("Press: fire it in the kiln", 56, 161, accent);
+  if (step == 3) label("Press the joystick: try a new glaze", 56, 161, accent);
 }
