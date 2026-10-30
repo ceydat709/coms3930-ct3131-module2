@@ -19,7 +19,7 @@ Hardware:
 - Joystick module
 - Push button
 - Potentiometer
-- Female-to-male wires
+- Female-to-male wires (5)
 - Jumper wires
 - Headers
 
