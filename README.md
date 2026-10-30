@@ -21,6 +21,7 @@ Hardware:
 - Potentiometer
 - Female-to-male wires
 - Jumper wires
+- Headers
 
 Other (decoration):
 - Paper
