@@ -2,14 +2,12 @@
 
 ## Project Summary
 
-This project is an interactive pottery simulator controlled by a LilyGo TTGO T-Display ESP32 with a joystick, a button, and a potentiometer. The ESP32 reads the hardware and sends it over serial to a pixel-art Processing sketch, where you place the clay on the wheel, shape it with your hands, open the top, and fire it in the kiln. The potentiometer controls the wheel speed, the joystick moves your hands and pushes or pulls the clay, the button moves to the next step, and a frog guides you through the whole process.
+This project is an interactive pottery simulator controlled by a LilyGo TTGO T-Display ESP32 with a joystick, a button, and a potentiometer. The ESP32 reads the hardware and sends it to a Processing sketch. Inspired by pottery ASMR, you place the clay on the wheel, shape it with your hands, open the top, and fire it in the kiln. The potentiometer controls the wheel speed, the joystick moves your hands and pushes or pulls the clay, the button moves to the next step, and a frog guides you through the whole process.
 
 Link to blog: [blog post](https://ceydat709.github.io/coms3930-design-documentation/modules/module-2.html)
 
 ## Project GIF
 ![Ribbit & Throw demo](images/demo.gif)
-
-Demo video: [YouTube](https://www.youtube.com/watch?v=SLMVfhkJJEQ)
 
 ## Source Code & Installation Instructions
 To recreate this project, you will need:
@@ -29,22 +27,15 @@ Other (decoration):
 - Tape
 
 ### Wiring
-| Part | ESP32 Pin |
-|---|---|
-| Joystick VRx | 39 |
-| Joystick VRy | 32 |
-| Joystick SW | 33 |
-| Potentiometer (middle leg) | 36 |
-| Button | 2 |
-
-- The joystick +5V and one outer leg of the potentiometer go to 3V, and the joystick GND, the other potentiometer leg, and the other side of the button go to ground
 
 ![Wiring diagram](images/wiring.png)
+
+In case of low visibility, joystick +5V and one outer leg of the potentiometer go to 3V, and the joystick GND, the other potentiometer leg, and the other side of the button go to ground
 
 ### Setup
 1. Download the Arduino IDE [here](https://www.arduino.cc/en/software)
 2. Install the ESP32 boards by following the instructions [here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html)
-3. Download Processing [here](https://processing.org/download) (the Serial library comes with it, no install needed)
+3. Download Processing [here](https://processing.org/download)
 
 ### Install
 1. Clone the GitHub repository
@@ -56,12 +47,11 @@ Other (decoration):
 7. Close the Arduino Serial Monitor (only one program can use the port at a time)
 8. Open `processing/pottery_wheel/pottery_wheel.pde` in Processing
 9. Click Run, check the list of ports printed in the console, and change `Serial.list()[5]` to the number of your board's port
-10. Make sure the baud rate is `115200` in both files
 
 ### Controls
-- Potentiometer: wheel speed
 - Joystick up/down: move your hands up and down the clay
 - Joystick left/right: push the clay in / pull it out
+- Potentiometer: wheel speed
 - Button: next step (place clay, shape, open the top, fire)
 - Joystick press: try a new glaze after firing
 
@@ -75,3 +65,4 @@ For the class showcase, the breadboard was placed inside a paper controller and 
 - Math used for the clay
     - Shaping: rings close to the hands change the most using `closeness = max(0, 1 - abs(i - handRing) / 4.0)`
     - Smoothing: each ring is blended toward the rings above and below it with [linear interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) (`lerp()`)
+ - Claude Code Opus 5.5 (AI support mentioned on blog page"
