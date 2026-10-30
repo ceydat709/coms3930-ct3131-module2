@@ -13,7 +13,7 @@ Link to blog: [blog post](https://ceydat709.github.io/coms3930-design-documentat
 To recreate this project, you will need:
 
 Hardware:
-- LilyGo TTGO T-Display ESP32 (with headers soldered)
+- LilyGo TTGO T-Display ESP32 (headers soldered)
 - USB-C cable
 - Breadboard
 - Joystick module
