@@ -35,8 +35,6 @@ Other (decoration):
   
 ![Wiring diagram](images/wiring.png)
 
-In case of low visibility, joystick +5V and one outer leg of the potentiometer go to 3V, and the joystick GND, the other potentiometer leg, and the other side of the button go to ground
-
 ### Setup
 1. Download the Arduino IDE [here](https://www.arduino.cc/en/software)
 2. Install the ESP32 boards by following the instructions [here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html)
