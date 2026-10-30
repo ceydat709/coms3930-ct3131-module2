@@ -27,7 +27,11 @@ Other (decoration):
 - Tape
 
 ### Wiring
-
+- ESP32 3V → + rail, GND → – rail
+- Joystick: VRx → 39, VRy → 32, SW → 33, +5V → 3V, GND → GND
+- Potentiometer: middle → 36, outer legs → 3V and GND
+- Button: one side → 2, other side → GND
+  
 ![Wiring diagram](images/wiring.png)
 
 In case of low visibility, joystick +5V and one outer leg of the potentiometer go to 3V, and the joystick GND, the other potentiometer leg, and the other side of the button go to ground
@@ -46,7 +50,7 @@ In case of low visibility, joystick +5V and one outer leg of the potentiometer g
 6. Click Upload to upload the sketch to your TTGO T-Display
 7. Close the Arduino Serial Monitor (only one program can use the port at a time)
 8. Open `processing/pottery_wheel/pottery_wheel.pde` in Processing
-9. Click Run, check the list of ports printed in the console, and change `Serial.list()[5]` to the number of your board's port
+9. Click Run and play (check list of ports printed in the console and change `Serial.list()[5]` to the number of your board's port)
 
 ### Controls
 - Joystick up/down: move your hands up and down the clay
@@ -65,4 +69,4 @@ For the class showcase, the breadboard was placed inside a paper controller and 
 - Math used for the clay
     - Shaping: rings close to the hands change the most using `closeness = max(0, 1 - abs(i - handRing) / 4.0)`
     - Smoothing: each ring is blended toward the rings above and below it with [linear interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) (`lerp()`)
- - Claude Code Opus 5.5 (AI support mentioned on blog page"
+ - Claude Code Opus 5.5 (AI support mentioned on blog page)
